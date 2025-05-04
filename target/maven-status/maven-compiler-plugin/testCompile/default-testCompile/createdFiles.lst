@@ -1,0 +1,4 @@
+model\SaleTest.class
+model\ItemTest.class
+integration\InventoryTest.class
+model\RegisterTest.class

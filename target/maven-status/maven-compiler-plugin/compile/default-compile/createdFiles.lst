@@ -1,0 +1,9 @@
+model\Register.class
+controller\Controller.class
+view\View.class
+integration\Inventory.class
+model\Item.class
+startup\Main.class
+dto\ItemDTO.class
+dto\SaleDTO.class
+model\Sale.class
