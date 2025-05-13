@@ -4,14 +4,25 @@ import controller.Controller;
 import dto.ItemDTO;
 import dto.SaleDTO;
 
+/**
+ * The {@code View} class represents the user interface. It imitates interactions with the system,
+ * like starting a sale, scanning items, paying and printing the receipt.
+ */
 public class View {
     
     private Controller controller;
 
+    /**
+     * Creates a new {@code View} instance witha  reference to the controller.
+     * @param controller The {@link Controller} that handles the program's logic.
+     */
     public View(Controller controller) {
         this.controller = controller;
     }
 
+    /**
+     * Simulates a complete purchase, including starting a sale, scanning items, printing the total cost, making a payment and printing the receipt.
+     */
     public void samplePurchase() {
         controller.startSale();
         
@@ -27,6 +38,11 @@ public class View {
         System.out.println(receipt);
     }
     
+    /**
+     * Simulates scanning a specific quantity of an item.
+     * @param itemID The id of the item being scanned.
+     * @param quantity The number of times to scan the item.
+     */
     private void scanItem (String itemID, int quantity) {
         for (int i = 0; i < quantity; i++) {
             ItemDTO item = controller.scanItem(itemID);
@@ -34,6 +50,10 @@ public class View {
         }
     }
 
+    /**
+     * Prints the details of a scanned item, or displays an error if the item is invalid.
+     * @param item The {@link ItemDTO} to display.
+     */
     private void printScannedItem(ItemDTO item) {
         if (item == null) {
             System.out.println("Item identifier is invalid!");
