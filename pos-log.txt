@@ -1,0 +1,18 @@
+15 maj 2025 15:14:17, Exception was thrown: The inventory database is not responding.
+integration.DatabaseFailureException: The inventory database is not responding.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:52)
+	at view.View.scanItem(View.java:65)
+	at view.View.samplePurchase(View.java:35)
+	at startup.Main.main(Main.java:22)
+
+
+15 maj 2025 15:18:28, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:52)
+	at view.View.scanItem(View.java:65)
+	at view.View.samplePurchase(View.java:35)
+	at startup.Main.main(Main.java:22)
+
+

@@ -1,9 +1,13 @@
-model\Register.class
 controller\Controller.class
+integration\DatabaseFailureException.class
+integration\InvalidIdException.class
+util\LogHandler.class
 view\View.class
+dto\SaleDTO.class
+model\Sale.class
+model\Register.class
+view\ErrorMessageHandler.class
 integration\Inventory.class
 model\Item.class
 startup\Main.class
 dto\ItemDTO.class
-dto\SaleDTO.class
-model\Sale.class

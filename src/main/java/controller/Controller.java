@@ -1,11 +1,14 @@
 package controller;
 
+import integration.InvalidIdException;
 import dto.ItemDTO;
 import dto.SaleDTO;
+import integration.DatabaseFailureException;
 import model.Item;
 import model.Register;
 import model.Sale;
 import integration.Inventory;
+import view.ErrorMessageHandler;
 
 /**
  * The @code Controller class control the operations between the different layers.
@@ -16,6 +19,7 @@ public class Controller {
     private Sale sale;
     private Inventory inventory;
     private Register register;
+    private ErrorMessageHandler logger;
 
     /**
      * Creates a new instance of the Controller with inventory and register intitialized.
@@ -33,25 +37,22 @@ public class Controller {
     }
     
     /**
-     * Scans an item by its id. If the item is already in the current sale, its quantity increases. If it's not in the sale but exists in the inventory, it is added.
+     * Scans an item by its id.If the item is already in the current sale, its quantity increases. If it's not in the sale but exists in the inventory, it is added.
      * @param itemId The identifier of the item being scanned.
      * @return A {@link ItemDTO} that represents the scanned item, or {@code null} if the identifier is invalid.
+     * @throws InvalidIdException
      */
-    public ItemDTO scanItem(String itemId) {
+    public ItemDTO scanItem(String itemId) throws InvalidIdException, DatabaseFailureException {
         Item item;
         if (sale.isItemInSale(itemId)) {
             item = sale.getItemFromSale(itemId);
             item.increaseQuantity(1);
         }
         else {
-            if (inventory.isValidItem(itemId)) {
-                ItemDTO itemDTO = inventory.getItem(itemId);
-                item = new Item(itemDTO);
-                sale.addItemToSale(item);
-            }
-            else {
-                return null;
-            }
+            inventory.isValidItem(itemId);
+            ItemDTO itemDTO = inventory.getItem(itemId);
+            item = new Item(itemDTO);
+            sale.addItemToSale(item);
         }
         sale.increaseTotalPrice(item.getPrice());
         sale.calculateTotalVat(item.getVat(), item.getPrice());

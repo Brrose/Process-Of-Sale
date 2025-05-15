@@ -3,6 +3,9 @@ package view;
 import controller.Controller;
 import dto.ItemDTO;
 import dto.SaleDTO;
+import integration.DatabaseFailureException;
+import integration.InvalidIdException;
+import util.LogHandler;
 
 /**
  * The {@code View} class represents the user interface. It imitates interactions with the system,
@@ -11,13 +14,16 @@ import dto.SaleDTO;
 public class View {
     
     private Controller controller;
+    private ErrorMessageHandler errorMsgHandler = new ErrorMessageHandler();
+    private LogHandler logHandler;
 
     /**
      * Creates a new {@code View} instance witha  reference to the controller.
      * @param controller The {@link Controller} that handles the program's logic.
      */
-    public View(Controller controller) {
+    public View(Controller controller, LogHandler logHandler) {
         this.controller = controller;
+        this.logHandler = logHandler;
     }
 
     /**
@@ -25,17 +31,28 @@ public class View {
      */
     public void samplePurchase() {
         controller.startSale();
+        try {
+            scanItem("fel123", 1);
+            
+            scanItem("abc23", 2);
+
+            scanItem("def456", 1);
+            
+            System.out.println("End sale: \nTotal cost (incl VAT): " + controller.getSaleTotal() + "\n");
         
-        scanItem("abc123", 2);
+            controller.pay(100);
+
+            String receipt = controller.getReceipt();
+            System.out.println(receipt);
+        }
+        catch (InvalidIdException iie) {
+            errorMsgHandler.showErrorMsg(iie.getMessage());
+        }
+        catch (DatabaseFailureException dbfe) {
+            errorMsgHandler.showErrorMsg("Server is not responding.");
+            logHandler.logException(dbfe);
+        }
         
-        scanItem("def456", 1);
-        
-        System.out.println("End sale: \nTotal cost (incl VAT): " + controller.getSaleTotal() + "\n");
-        
-        controller.pay(100);
-        
-        String receipt = controller.getReceipt();
-        System.out.println(receipt);
     }
     
     /**
@@ -43,7 +60,7 @@ public class View {
      * @param itemID The id of the item being scanned.
      * @param quantity The number of times to scan the item.
      */
-    private void scanItem (String itemID, int quantity) {
+    private void scanItem (String itemID, int quantity) throws InvalidIdException, DatabaseFailureException {
         for (int i = 0; i < quantity; i++) {
             ItemDTO item = controller.scanItem(itemID);
             printScannedItem(item);

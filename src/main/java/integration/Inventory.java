@@ -22,9 +22,17 @@ public class Inventory {
      * Checks if an item exists in the inventory.
      * @param id The identifier of the item being checked.
      * @return {@code true} if the item exists, {@code false} if not.
+     * @throws integration.InvalidIdException
+     * @throws integration.DatabaseFailureException
      */
-    public boolean isValidItem(String id) {
-        return inventory.get(id) != null;
+    public boolean isValidItem(String id) throws InvalidIdException, DatabaseFailureException {
+       if (id.equals("fel123")) {
+           throw new DatabaseFailureException("Database could not be called due to not running.");
+       }
+       if (inventory.get(id) == null) {
+           throw new InvalidIdException(id);
+       }
+       return inventory.get(id) != null;
     }
     
     /**
