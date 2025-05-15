@@ -10,7 +10,6 @@ import integration.Inventory;
 /**
  * The @code Controller class control the operations between the different layers.
  * It takes care of the sale process which includes starting a sale, scanning the items, processing the payment and creating a receipt.
- * hej
  */
 public class Controller {
 
