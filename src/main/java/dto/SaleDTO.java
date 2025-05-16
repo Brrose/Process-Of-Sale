@@ -11,5 +11,8 @@ import java.util.ArrayList;
  * @param change The amount of change to be returned to the customer.
  */
 public record SaleDTO(float totalPrice, float totalVAT, ArrayList<ItemDTO> items, float cash, float change) {
-
+   
+    public float getTotalPrice () {
+        return totalPrice;
+    }
 }

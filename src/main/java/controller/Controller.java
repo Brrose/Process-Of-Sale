@@ -8,6 +8,7 @@ import model.Item;
 import model.Register;
 import model.Sale;
 import integration.Inventory;
+import model.SaleObserver;
 import view.ErrorMessageHandler;
 
 /**
@@ -20,6 +21,7 @@ public class Controller {
     private Inventory inventory;
     private Register register;
     private ErrorMessageHandler logger;
+    private SaleObserver obs;
 
     /**
      * Creates a new instance of the Controller with inventory and register intitialized.
@@ -27,6 +29,7 @@ public class Controller {
     public Controller() {
         this.inventory = new Inventory();
         this.register = new Register();
+ 
     }
     
     /**
@@ -90,6 +93,8 @@ public class Controller {
      * @return A {@link SaleDTO} that contains the current sale's data.
      */
     public SaleDTO getCurrentSale() {
+        obs.newSale(this.sale.generateDTO());
         return this.sale.generateDTO();
     }
+    
 }

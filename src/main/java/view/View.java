@@ -32,9 +32,9 @@ public class View {
     public void samplePurchase() {
         controller.startSale();
         try {
-            scanItem("fel123", 1);
+            //scanItem("fel123", 1);
             
-            scanItem("abc23", 2);
+            scanItem("abc123", 2);
 
             scanItem("def456", 1);
             

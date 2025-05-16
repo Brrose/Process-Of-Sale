@@ -16,3 +16,12 @@ integration.DatabaseFailureException: Database could not be called due to not ru
 	at startup.Main.main(Main.java:22)
 
 
+16 maj 2025 16:31:25, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:52)
+	at view.View.scanItem(View.java:65)
+	at view.View.samplePurchase(View.java:35)
+	at startup.Main.main(Main.java:22)
+
+

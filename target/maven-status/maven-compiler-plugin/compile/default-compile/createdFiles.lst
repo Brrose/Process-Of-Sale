@@ -5,9 +5,13 @@ util\LogHandler.class
 view\View.class
 dto\SaleDTO.class
 model\Sale.class
+view\TotalRevenueView.class
 model\Register.class
+model\SaleObserver.class
 view\ErrorMessageHandler.class
+view\RevenueDisplay.class
 integration\Inventory.class
 model\Item.class
 startup\Main.class
 dto\ItemDTO.class
+util\TotalRevenueFileOutput.class
