@@ -15,7 +15,7 @@ public class InventoryTest {
     }
 
     @Test
-    public void testIsValidItem() {
+    public void testIsValidItem() throws InvalidIdException, DatabaseFailureException {
         assertTrue(inventory.isValidItem("abc123"), "abc123 should be a valid item");
         assertFalse(inventory.isValidItem("invalidID"), "invalidID should not be a valid item");
     }
