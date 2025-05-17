@@ -5,7 +5,9 @@ import dto.ItemDTO;
 import dto.SaleDTO;
 import integration.DatabaseFailureException;
 import integration.InvalidIdException;
+import java.io.IOException;
 import util.LogHandler;
+import util.TotalRevenueFileOutput;
 
 /**
  * The {@code View} class represents the user interface. It imitates interactions with the system,
@@ -24,17 +26,24 @@ public class View {
     public View(Controller controller, LogHandler logHandler) {
         this.controller = controller;
         this.logHandler = logHandler;
+        try {
+         controller.addSaleObserver(new TotalRevenueView());
+         controller.addSaleObserver(new TotalRevenueFileOutput());
+        }
+        catch (IOException ioe) {
+            System.out.println("File for total revenue could not be initialized.");
+        }
     }
 
     /**
      * Simulates a complete purchase, including starting a sale, scanning items, printing the total cost, making a payment and printing the receipt.
      */
-    public void samplePurchase() {
-        controller.startSale();
+    public void samplePurchase(){
         try {
-            //scanItem("fel123", 1);
+            controller.startSale();
+            scanItem("fel123", 1);
             
-            scanItem("abc123", 2);
+            scanItem("abc23", 2);
 
             scanItem("def456", 1);
             
@@ -44,6 +53,7 @@ public class View {
 
             String receipt = controller.getReceipt();
             System.out.println(receipt);
+            controller.endSale();
         }
         catch (InvalidIdException iie) {
             errorMsgHandler.showErrorMsg(iie.getMessage());

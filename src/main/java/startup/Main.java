@@ -4,6 +4,8 @@ import controller.Controller;
 import java.io.IOException;
 import view.View;
 import util.LogHandler;
+import util.TotalRevenueFileOutput;
+import view.TotalRevenueView;
 
 /**
  * The {@code Main} class serves as the start point for the program.
@@ -19,6 +21,7 @@ public class Main {
         Controller controller = new Controller();
         LogHandler logHandler = new LogHandler();
         View view = new View(controller, logHandler);
+        view.samplePurchase();
         view.samplePurchase();
     }
 }

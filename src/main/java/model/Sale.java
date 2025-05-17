@@ -5,6 +5,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import dto.SaleDTO;
+import java.util.List;
+import model.SaleObserver;
 
 /**
  * The {@code Sale} class represents a sale in progress, 
@@ -16,7 +18,7 @@ public class Sale {
     private ArrayList<Item> items;
     private float cash;
     private float change;
-
+    private List<SaleObserver> observers = new ArrayList<>();
     /**
      * Creates a new {@code Sale} instance with an 
      * empty list of items and zeroed values.
@@ -194,5 +196,13 @@ public class Sale {
             itemsDTO.add(item.generateDTO());
         }
         return new SaleDTO(this.totalPrice, this.totalVAT, itemsDTO, this.cash, this.change);
+    }
+    
+    public void addObserver (SaleObserver obs) {
+        observers.add(obs);
+    }
+    
+    public List<SaleObserver> getObservers() {
+        return observers;
     }
 }

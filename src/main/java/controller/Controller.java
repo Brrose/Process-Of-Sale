@@ -8,6 +8,8 @@ import model.Item;
 import model.Register;
 import model.Sale;
 import integration.Inventory;
+import java.util.ArrayList;
+import java.util.List;
 import model.SaleObserver;
 import view.ErrorMessageHandler;
 
@@ -21,7 +23,7 @@ public class Controller {
     private Inventory inventory;
     private Register register;
     private ErrorMessageHandler logger;
-    private SaleObserver obs;
+    private List<SaleObserver> saleObservers = new ArrayList<>();
 
     /**
      * Creates a new instance of the Controller with inventory and register intitialized.
@@ -32,11 +34,18 @@ public class Controller {
  
     }
     
+    public void addSaleObserver(SaleObserver obs) {
+        saleObservers.add(obs);
+    }
+    
     /**
      * Starts a new sale by creating a new {@link Sale} instance.
      */
     public void startSale() {
         this.sale = new Sale();
+        for (SaleObserver obs : saleObservers) {
+            sale.addObserver(obs);
+        }
     }
     
     /**
@@ -93,8 +102,13 @@ public class Controller {
      * @return A {@link SaleDTO} that contains the current sale's data.
      */
     public SaleDTO getCurrentSale() {
-        obs.newSale(this.sale.generateDTO());
         return this.sale.generateDTO();
     }
     
+    public void endSale() {
+        SaleDTO saleDTO = this.sale.generateDTO();
+        for (SaleObserver obs : sale.getObservers()) {
+            obs.newSale(saleDTO);
+        }
+    }
 }
