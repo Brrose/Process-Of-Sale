@@ -20,8 +20,10 @@ public class View {
     private LogHandler logHandler;
 
     /**
-     * Creates a new {@code View} instance witha  reference to the controller.
+     * Creates a new {@code View} instance with a reference to the controller and log handler.
+     * It also registers observers to track the total revenue.
      * @param controller The {@link Controller} that handles the program's logic.
+     * @param logHandler The {@link LogHandler} responsible for logging exceptions.
      */
     public View(Controller controller, LogHandler logHandler) {
         this.controller = controller;
@@ -36,7 +38,10 @@ public class View {
     }
 
     /**
-     * Simulates a complete purchase, including starting a sale, scanning items, printing the total cost, making a payment and printing the receipt.
+     * Simulates a complete purchase, including starting a sale, scanning items, 
+     * printing the total cost, making a payment, printing the receipt and 
+     * ending the sale with notifying the observers.
+     * Exceptions like invalid item id or database failures are handled with error messages and logging.
      */
     public void samplePurchase(){
         try {
@@ -69,6 +74,8 @@ public class View {
      * Simulates scanning a specific quantity of an item.
      * @param itemID The id of the item being scanned.
      * @param quantity The number of times to scan the item.
+     * @throws InvalidIdException If the item id is invalid.
+     * @throws DatabaseFailureException If the database is not running.
      */
     private void scanItem (String itemID, int quantity) throws InvalidIdException, DatabaseFailureException {
         for (int i = 0; i < quantity; i++) {

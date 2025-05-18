@@ -12,8 +12,9 @@ import util.LogHandler;
 public class Main {
     
     /**
-     * Starts the program by creating the controller and view, then running a sample purchase.
-     * @param args 
+     * Starts the program by creating the controller and view, then running two sample purchases.
+     * @param args
+     * @throws IOException If an error occurs during logging.
      */
     public static void main(String[] args) throws IOException {
         Controller controller = new Controller();

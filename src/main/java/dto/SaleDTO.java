@@ -12,6 +12,10 @@ import java.util.ArrayList;
  */
 public record SaleDTO(float totalPrice, float totalVAT, ArrayList<ItemDTO> items, float cash, float change) {
    
+    /**
+     * Gets the total price of the sale.
+     * @return The total price.
+     */
     public float getTotalPrice () {
         return totalPrice;
     }

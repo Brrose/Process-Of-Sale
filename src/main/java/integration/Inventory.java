@@ -22,8 +22,8 @@ public class Inventory {
      * Checks if an item exists in the inventory.
      * @param id The identifier of the item being checked.
      * @return {@code true} if the item exists, {@code false} if not.
-     * @throws integration.InvalidIdException
-     * @throws integration.DatabaseFailureException
+     * @throws integration.InvalidIdException If the id is not found in the inventory.
+     * @throws integration.DatabaseFailureException If the database is not running.
      */
     public boolean isValidItem(String id) throws InvalidIdException, DatabaseFailureException {
        if (id.equals("fel123")) {

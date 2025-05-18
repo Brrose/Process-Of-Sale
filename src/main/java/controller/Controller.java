@@ -34,12 +34,16 @@ public class Controller {
  
     }
     
+    /**
+     * Adds a {@link SaleObserver} that will be notified when a sale is done.
+     * @param obs The observer to add.
+     */
     public void addSaleObserver(SaleObserver obs) {
         saleObservers.add(obs);
     }
     
     /**
-     * Starts a new sale by creating a new {@link Sale} instance.
+     * Starts a new sale by creating a new {@link Sale} instance and adding observers to it.
      */
     public void startSale() {
         this.sale = new Sale();
@@ -49,10 +53,11 @@ public class Controller {
     }
     
     /**
-     * Scans an item by its id.If the item is already in the current sale, its quantity increases. If it's not in the sale but exists in the inventory, it is added.
+     * Scans an item by its id. If the item is already in the current sale, its quantity increases. If it's not in the sale but exists in the inventory, it is added.
      * @param itemId The identifier of the item being scanned.
-     * @return A {@link ItemDTO} that represents the scanned item, or {@code null} if the identifier is invalid.
-     * @throws InvalidIdException
+     * @return A {@link ItemDTO} that represents the scanned item.
+     * @throws InvalidIdException If the item id is invalid.
+     * @throws DatabaseFailureException If there is a database failure, like it not running.
      */
     public ItemDTO scanItem(String itemId) throws InvalidIdException, DatabaseFailureException {
         Item item;
@@ -105,6 +110,9 @@ public class Controller {
         return this.sale.generateDTO();
     }
     
+    /**
+     * Ends the current sale and notifies all the observers.
+     */
     public void endSale() {
         SaleDTO saleDTO = this.sale.generateDTO();
         for (SaleObserver obs : sale.getObservers()) {

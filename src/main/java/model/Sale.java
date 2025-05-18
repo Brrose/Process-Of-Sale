@@ -19,6 +19,7 @@ public class Sale {
     private float cash;
     private float change;
     private List<SaleObserver> observers = new ArrayList<>();
+    
     /**
      * Creates a new {@code Sale} instance with an 
      * empty list of items and zeroed values.
@@ -198,10 +199,18 @@ public class Sale {
         return new SaleDTO(this.totalPrice, this.totalVAT, itemsDTO, this.cash, this.change);
     }
     
+    /**
+     * Adds a sale observer that will be notified when the sale ends.
+     * @param obs The observer being added.
+     */
     public void addObserver (SaleObserver obs) {
         observers.add(obs);
     }
     
+    /**
+     * Returns the list of observers attached to the sale.
+     * @return A list of {@link SaleObserver} instances.
+     */
     public List<SaleObserver> getObservers() {
         return observers;
     }
