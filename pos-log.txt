@@ -25,3 +25,39 @@ integration.DatabaseFailureException: Database could not be called due to not ru
 	at startup.Main.main(Main.java:22)
 
 
+17 maj 2025 22:19:10, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:64)
+	at view.View.scanItem(View.java:75)
+	at view.View.samplePurchase(View.java:44)
+	at startup.Main.main(Main.java:24)
+
+
+17 maj 2025 22:19:10, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:64)
+	at view.View.scanItem(View.java:75)
+	at view.View.samplePurchase(View.java:44)
+	at startup.Main.main(Main.java:25)
+
+
+18 maj 2025 14:45:35, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:64)
+	at view.View.scanItem(View.java:75)
+	at view.View.samplePurchase(View.java:44)
+	at startup.Main.main(Main.java:22)
+
+
+18 maj 2025 14:45:35, Exception was thrown: Database could not be called due to not running.
+integration.DatabaseFailureException: Database could not be called due to not running.
+	at integration.Inventory.isValidItem(Inventory.java:30)
+	at controller.Controller.scanItem(Controller.java:64)
+	at view.View.scanItem(View.java:75)
+	at view.View.samplePurchase(View.java:44)
+	at startup.Main.main(Main.java:23)
+
+

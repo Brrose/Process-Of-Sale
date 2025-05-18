@@ -8,5 +8,5 @@ package dto;
  * @param vat The VAT percentage applied to the item.
  */
 public record ItemDTO(String id, String description, String name, float price, float vat) {
-
+   
 }

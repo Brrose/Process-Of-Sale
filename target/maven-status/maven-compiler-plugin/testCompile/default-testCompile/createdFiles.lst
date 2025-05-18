@@ -1,6 +1,7 @@
-model\SaleTest.class
-model\ItemTest.class
+controller\ControllerTest.class
 integration\InventoryTest.class
 model\RegisterTest.class
 DatabaseFailureExceptionTest.class
+model\SaleTest.class
+model\ItemTest.class
 InvalidIdExceptionTest.class
