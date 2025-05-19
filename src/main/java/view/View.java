@@ -46,9 +46,8 @@ public class View {
     public void samplePurchase(){
         try {
             controller.startSale();
-            scanItem("fel123", 1);
             
-            scanItem("abc23", 2);
+            scanItem("abc123", 2);
 
             scanItem("def456", 1);
             
