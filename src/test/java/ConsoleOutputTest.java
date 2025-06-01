@@ -18,9 +18,6 @@ import util.LogHandler;
 import view.TotalRevenueView;
 import view.View;
 
-/**
- * Tests all console output (System.out.println) functionality in the Process Sale program.
- */
 public class ConsoleOutputTest {
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -35,9 +32,6 @@ public class ConsoleOutputTest {
         System.setOut(originalOut);
     }
 
-    /**
-     * Tests that running the main method prints the expected sale information to System.out.
-     */
     @Test
     void testMainMethodPrintsOutput() throws IOException {
         Main.main(null);
@@ -48,9 +42,6 @@ public class ConsoleOutputTest {
         assertTrue(output.contains("Total revenue is:"));
     }
 
-    /**
-     * Tests that TotalRevenueView prints the revenue correctly.
-     */
     @Test
     void testTotalRevenueViewPrintsTotal() {
         TotalRevenueView revenueView = new TotalRevenueView();
@@ -59,24 +50,18 @@ public class ConsoleOutputTest {
         assertTrue(output.contains("Total revenue is: 200.0"));
     }
 
-    /**
-     * Tests the printout after scanning a valid item.
-     */
     @Test
     void testScanItemPrintsCorrectInfo() throws IOException, InvalidIdException, DatabaseFailureException {
         Controller controller = new Controller();
         View view = new View(controller, new LogHandler());
         controller.startSale();
-        view.samplePurchase(); // Will call scanItem internally
+        view.samplePurchase(); 
         String output = outContent.toString();
         assertTrue(output.contains("Item ID: abc123") || output.contains("Item ID: def456"));
         assertTrue(output.contains("Item name:"));
         assertTrue(output.contains("Item cost:"));
     }
 
-    /**
-     * Tests the full receipt output format from sample purchase.
-     */
     @Test
     void testReceiptPrintout() throws IOException {
         Controller controller = new Controller();
@@ -90,9 +75,6 @@ public class ConsoleOutputTest {
         assertTrue(output.contains("End receipt"));
     }
 
-    /**
-     * Tests the printout for an invalid item.
-     */
     @Test
     void testInvalidItemPrintout() throws IOException, DatabaseFailureException {
         Controller controller = new Controller();
